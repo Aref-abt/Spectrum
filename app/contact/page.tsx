@@ -8,7 +8,8 @@ import { Footer } from "@/components/footer"
 import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react"
 
 export default function ContactPage() {
-  const [formState, setFormState] = useState<"idle" | "submitting" | "success">("idle")
+  const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,9 +21,29 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setFormState("submitting")
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    setFormState("success")
+    setErrorMessage("")
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+
+      setFormState("success")
+    } catch (error) {
+      setFormState("error")
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message. Please try again.')
+      setTimeout(() => setFormState("idle"), 3000)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -242,6 +263,12 @@ export default function ContactPage() {
                           </>
                         )}
                       </button>
+
+                      {formState === "error" && errorMessage && (
+                        <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
+                          {errorMessage}
+                        </div>
+                      )}
                     </form>
                   </>
                 )}
