@@ -38,9 +38,23 @@ export function Footer() {
           </nav>
 
           {/* Copyright */}
-          <p className="text-sm text-background/40">
-            {new Date().getFullYear()} Spectrum. All rights reserved.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+            <p className="text-sm text-background/40">
+              {new Date().getFullYear()} Spectrum. All rights reserved.
+            </p>
+            <span className="hidden sm:block text-background/20">•</span>
+            <p className="text-sm text-background/40">
+              Made by{" "}
+              <a 
+                href="https://devitty.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-background/60 hover:text-background transition-colors font-medium"
+              >
+                Devitty
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

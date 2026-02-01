@@ -86,14 +86,11 @@ export default function AboutPage() {
             {/* Image */}
             <div className={`relative transition-all duration-700 ${visibleSections.has("philosophy") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
               <div className="aspect-[4/5] rounded-3xl overflow-hidden bg-muted">
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-accent/50 flex items-center justify-center">
-                      <span className="font-serif text-4xl text-muted-foreground">S</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">Studio Image</p>
-                  </div>
-                </div>
+                <img 
+                  src="/images/gallery/WhatsApp Image 2026-01-28 at 10.13.44 AM (1).jpeg" 
+                  alt="Spectrum Interior Design Studio" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               {/* Decorative element */}
               <div className="absolute -z-10 -bottom-6 -right-6 w-full h-full rounded-3xl bg-muted/50" />
