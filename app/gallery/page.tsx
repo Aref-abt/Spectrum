@@ -8,12 +8,11 @@ import { X, ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react"
 
 const categories = ["All", "Residential", "Commercial", "Hospitality"]
 
-// All 33 gallery images
+// All gallery images that exist
 const allImages = [
   "IMG_20240806_131210_004.jpg.jpeg",
   "IMG_20250502_142437_676.jpg.jpeg",
   "WhatsApp Image 2026-01-28 at 10.13.43 AM (1).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.43 AM (2).jpeg",
   "WhatsApp Image 2026-01-28 at 10.13.43 AM (3).jpeg",
   "WhatsApp Image 2026-01-28 at 10.13.43 AM (4).jpeg",
   "WhatsApp Image 2026-01-28 at 10.13.43 AM (5).jpeg",
@@ -24,10 +23,8 @@ const allImages = [
   "WhatsApp Image 2026-01-28 at 10.13.45 AM (1).jpeg",
   "WhatsApp Image 2026-01-28 at 10.13.45 AM (2).jpeg",
   "WhatsApp Image 2026-01-28 at 10.13.45 AM (3).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.45 AM (4).jpeg",
   "WhatsApp Image 2026-01-28 at 10.13.45 AM.jpeg",
   "WhatsApp Image 2026-01-28 at 10.13.46 AM (1).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.46 AM (2).jpeg",
   "WhatsApp Image 2026-01-28 at 10.13.46 AM (3).jpeg",
   "WhatsApp Image 2026-01-28 at 10.13.46 AM (4).jpeg",
   "WhatsApp Image 2026-01-28 at 10.13.46 AM (5).jpeg",
