@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
 
 const projects = [
@@ -73,7 +74,7 @@ export function GallerySection() {
               Selected Projects
             </h2>
           </div>
-          <Link 
+          <Link
             href="/gallery"
             className="group inline-flex items-center gap-2 text-sm font-medium hover:text-muted-foreground transition-colors"
           >
@@ -88,33 +89,32 @@ export function GallerySection() {
             <Link
               key={project.id}
               href="/gallery"
-              className={`group relative overflow-hidden rounded-3xl transition-all duration-700 ${
-                project.size === "large" ? "aspect-[4/3]" : "aspect-square"
-              } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`group relative overflow-hidden rounded-3xl transition-all duration-700 ${project.size === "large" ? "aspect-[4/3]" : "aspect-square"
+                } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: `${index * 100 + 200}ms` }}
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
               {/* Project Image */}
               <div className="absolute inset-0 bg-accent">
-                <img 
+                <Image
                   src={`/images/gallery/project-${project.id}.jpg`}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
 
               {/* Overlay */}
-              <div className={`absolute inset-0 bg-foreground/0 transition-all duration-500 ${
-                hoveredId === project.id ? "bg-foreground/60" : ""
-              }`} />
+              <div className={`absolute inset-0 bg-foreground/0 transition-all duration-500 ${hoveredId === project.id ? "bg-foreground/60" : ""
+                }`} />
 
               {/* Content */}
               <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-between">
                 {/* Top */}
-                <div className={`flex items-start justify-between transition-all duration-300 ${
-                  hoveredId === project.id ? "opacity-100" : "opacity-0"
-                }`}>
+                <div className={`flex items-start justify-between transition-all duration-300 ${hoveredId === project.id ? "opacity-100" : "opacity-0"
+                  }`}>
                   <span className="px-4 py-1.5 bg-background/90 backdrop-blur-sm rounded-full text-xs font-medium">
                     {project.category}
                   </span>
@@ -124,9 +124,8 @@ export function GallerySection() {
                 </div>
 
                 {/* Bottom */}
-                <div className={`transition-all duration-500 ${
-                  hoveredId === project.id ? "translate-y-0 opacity-100" : "translate-y-4 opacity-70"
-                }`}>
+                <div className={`transition-all duration-500 ${hoveredId === project.id ? "translate-y-0 opacity-100" : "translate-y-4 opacity-70"
+                  }`}>
                   <p className="text-xs text-background/70 mb-1">{project.year}</p>
                   <h3 className="text-xl lg:text-2xl font-serif font-medium text-background">
                     {project.title}
