@@ -98,9 +98,6 @@ const galleryData = [
   { image: "WhatsApp Image 2026-01-28 at 10.16.40 AM (2).jpeg", title: "Outdoor Landscape", category: "Outdoor" },
 
   // Leftovers
-  { image: "WhatsApp Image 2026-01-28 at 10.13.46 AM (4).jpeg", title: "Interior Design", category: "Residential" },
-  { image: "WhatsApp Image 2026-01-28 at 10.13.45 AM (1).jpeg", title: "Interior Design", category: "Residential" },
-  { image: "WhatsApp Image 2026-01-28 at 10.15.51 AM (6).jpeg", title: "Interior Design", category: "Commercial" },
   { image: "Noble gourmet f_Photo - 2 (1).jpg", title: "Noble UAE", category: "Commercial" }
 ]
 
