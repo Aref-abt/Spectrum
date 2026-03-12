@@ -6,134 +6,131 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { X, ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react"
 
-const categories = ["All", "Residential", "Commercial", "Hospitality", "3D", "Outdoor"]
+const categories = ["All", "Residential", "Commercial", "Hospitality", "3D", "Outdoor", "Architecture"]
 
-const allImages = [
-  "project-1.jpg",
-  "project-2.jpg",
-  "project-3.jpg",
-  "project-4.jpg",
-  "WhatsApp Image 2026-01-28 at 10.13.43 AM (1).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.43 AM (3).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.43 AM (4).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.43 AM (5).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.43 AM.jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.44 AM (1).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.44 AM (2).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.44 AM.jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.45 AM (1).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.45 AM (2).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.45 AM (3).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.45 AM.jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.46 AM (1).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.46 AM (3).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.46 AM (4).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.46 AM (5).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.46 AM (6).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.13.46 AM.jpeg",
-  "WhatsApp Image 2026-01-28 at 10.15.51 AM (1).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.15.51 AM (2).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.15.51 AM (3).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.15.51 AM (4).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.15.51 AM (5).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.15.51 AM (6).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.15.51 AM.jpeg",
-  "WhatsApp Image 2026-01-28 at 10.16.40 AM (1).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.16.40 AM (2).jpeg",
-  "WhatsApp Image 2026-01-28 at 10.16.40 AM.jpeg",
-  "JC_25460.jpg",
-  "final Noble Gourmet_Photo - 2.jpg",
-  "JC_25438.jpg",
-  "JC_25453.jpg",
-  "Noble gourmet f_Photo - 2 (1).jpg",
-  "JC_25436.jpg",
-  "IMG_5844.JPG",
-  "IMG_5836.JPG",
-  "anthonydaoudphotography-10.jpg",
-  "anthonydaoudphotography-197.jpg",
-  "anthonydaoudphotography-164.jpg",
-  "anthonydaoudphotography-177.jpg",
-  "anthonydaoudphotography-157.jpg",
-  "anthonydaoudphotography-166.jpg",
-  "anthonydaoudphotography-205.jpg",
-  "anthonydaoudphotography-145.jpg",
-  "anthonydaoudphotography-116.jpg",
-  "anthonydaoudphotography-21.jpg",
-  "anthonydaoudphotography-11.jpg",
-  "anthonydaoudphotography.jpg",
-  "anthonydaoudphotography-32.jpg",
-  "anthonydaoudphotography-18.jpg",
-  "anthonydaoudphotography-2.jpg",
-  "1n.jpg",
-  "view 3-high res-mod 2.jpg",
-  "WhatsApp Image 2021-01-20 at 9.00.58 AM (1).jpeg",
-  "WhatsApp Image 2021-01-20 at 9.00.58 AM.jpeg",
-  "view 1-option 2.jpg",
-  "view4-option 2.jpg"
+const galleryData = [
+  // Noble UAE
+  { image: "1n.jpg", title: "Noble UAE", category: "3D" },
+  { image: "2n.jpg", title: "Noble UAE", category: "3D" },
+  { image: "final Noble Gourmet_Photo - 2.jpg", title: "Noble UAE", category: "3D" },
+  { image: "final Noble Gourmet_1 - Photo.jpg", title: "Noble UAE", category: "3D" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.44 AM (2).jpeg", title: "3D Design", category: "3D" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.45 AM (3).jpeg", title: "3D Design", category: "3D" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.46 AM (5).jpeg", title: "3D Design", category: "3D" },
+  { image: "WhatsApp Image 2026-01-28 at 10.15.51 AM.jpeg", title: "3D Design", category: "3D" },
+
+  // Office
+  { image: "anthonydaoudphotography.jpg", title: "Office", category: "Commercial" },
+  { image: "anthonydaoudphotography-2.jpg", title: "Office", category: "Commercial" },
+  { image: "anthonydaoudphotography-10.jpg", title: "Office", category: "Commercial" },
+  { image: "anthonydaoudphotography-11.jpg", title: "Office", category: "Commercial" },
+  { image: "anthonydaoudphotography-18.jpg", title: "Office", category: "Commercial" },
+  { image: "anthonydaoudphotography-21.jpg", title: "Office", category: "Commercial" },
+
+  // Funky shop
+  { image: "anthonydaoudphotography-32.jpg", title: "Funky Shop", category: "Commercial" },
+  { image: "anthonydaoudphotography-34.jpg", title: "Funky Shop", category: "Commercial" },
+  { image: "anthonydaoudphotography-36.jpg", title: "Funky Shop", category: "Commercial" },
+  { image: "anthonydaoudphotography-37.jpg", title: "Funky Shop", category: "Commercial" },
+  { image: "Screenshot 2026-03-12 131737.png", title: "Funky Shop", category: "Commercial" },
+
+  // Clinic by aimee
+  { image: "WhatsApp Image 2026-01-28 at 10.15.51 AM (5).jpeg", title: "Clinic By Aimee", category: "Commercial" },
+  { image: "anthonydaoudphotography-116.jpg", title: "Clinic By Aimee", category: "Commercial" },
+
+  // cone-fetti
+  { image: "anthonydaoudphotography-145.jpg", title: "Cone-Fetti", category: "Commercial" },
+  { image: "anthonydaoudphotography-157.jpg", title: "Cone-Fetti", category: "Commercial" },
+  { image: "WhatsApp Image 2026-01-28 at 10.16.40 AM.jpeg", title: "Cone-Fetti", category: "Commercial" },
+
+  // beauty salon elie gabriel
+  { image: "anthonydaoudphotography-164.jpg", title: "Beauty Salon Elie Gabriel", category: "Commercial" },
+  { image: "anthonydaoudphotography-166.jpg", title: "Beauty Salon Elie Gabriel", category: "Commercial" },
+  { image: "anthonydaoudphotography-177.jpg", title: "Beauty Salon Elie Gabriel", category: "Commercial" },
+
+  // Modern House
+  { image: "WhatsApp Image 2026-01-28 at 10.13.46 AM (1).jpeg", title: "Modern House", category: "Residential" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.45 AM.jpeg", title: "Modern House", category: "Residential" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.45 AM (2).jpeg", title: "Modern House", category: "Residential" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.44 AM.jpeg", title: "Modern House", category: "Residential" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.44 AM (1).jpeg", title: "Modern House", category: "Residential" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.43 AM (5).jpeg", title: "Modern House", category: "Residential" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.43 AM (4).jpeg", title: "Modern House", category: "Residential" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.43 AM (3).jpeg", title: "Modern House", category: "Residential" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.43 AM (1).jpeg", title: "Modern House", category: "Residential" },
+  { image: "project-1.jpg", title: "Modern House", category: "Residential" },
+  { image: "anthonydaoudphotography-197.jpg", title: "Modern House", category: "Residential" },
+  { image: "anthonydaoudphotography-205.jpg", title: "Modern House", category: "Residential" },
+  { image: "project-1dsfgg.jpg", title: "Modern House", category: "Residential" },
+  { image: "project-2.jpg", title: "Modern House", category: "Residential" },
+  { image: "project-3.jpg", title: "Modern House", category: "Residential" },
+  { image: "project-4.jpg", title: "Modern House", category: "Residential" },
+
+  // Architecture
+  { image: "view 1-option 2.jpg", title: "Architecture", category: "Architecture" },
+  { image: "view4-option 2.jpg", title: "Architecture", category: "Architecture" },
+
+  // Pent house
+  { image: "WhatsApp Image 2021-01-20 at 9.00.58 AM (1).jpeg", title: "Pent House", category: "Residential" },
+  { image: "WhatsApp Image 2021-01-20 at 9.00.58 AM.jpeg", title: "Pent House", category: "Residential" },
+
+  // Lobby design
+  { image: "WhatsApp Image 2026-01-28 at 10.13.46 AM (3).jpeg", title: "Lobby Design", category: "Hospitality" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.46 AM (6).jpeg", title: "Lobby Design", category: "Hospitality" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.46 AM.jpeg", title: "Lobby Design", category: "Hospitality" },
+
+  // modern black kitchen design
+  { image: "WhatsApp Image 2026-01-28 at 10.15.51 AM (1).jpeg", title: "Modern Black Kitchen Design", category: "Residential" },
+
+  // Outdoor
+  { image: "IMG_5836.JPG", title: "Outdoor Landscape", category: "Outdoor" },
+  { image: "IMG_5844.JPG", title: "Outdoor Landscape", category: "Outdoor" },
+  { image: "JC_25436.jpg", title: "Outdoor Seating", category: "Outdoor" },
+  { image: "JC_25438.jpg", title: "Outdoor Seating", category: "Outdoor" },
+  { image: "JC_25453.jpg", title: "Outdoor Seating", category: "Outdoor" },
+  { image: "JC_25460.jpg", title: "Outdoor Seating", category: "Outdoor" },
+  { image: "view 3-high res-mod 2.jpg", title: "Outdoor Seating", category: "Outdoor" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.43 AM.jpeg", title: "Outdoor Landscape", category: "Outdoor" },
+  { image: "WhatsApp Image 2026-01-28 at 10.15.51 AM (2).jpeg", title: "Outdoor Landscape", category: "Outdoor" },
+  { image: "WhatsApp Image 2026-01-28 at 10.15.51 AM (3).jpeg", title: "Outdoor Landscape", category: "Outdoor" },
+  { image: "WhatsApp Image 2026-01-28 at 10.15.51 AM (4).jpeg", title: "Outdoor Landscape", category: "Outdoor" },
+  { image: "WhatsApp Image 2026-01-28 at 10.16.40 AM (1).jpeg", title: "Outdoor Landscape", category: "Outdoor" },
+  { image: "WhatsApp Image 2026-01-28 at 10.16.40 AM (2).jpeg", title: "Outdoor Landscape", category: "Outdoor" },
+
+  // Leftovers
+  { image: "WhatsApp Image 2026-01-28 at 10.13.46 AM (4).jpeg", title: "Interior Design", category: "Residential" },
+  { image: "WhatsApp Image 2026-01-28 at 10.13.45 AM (1).jpeg", title: "Interior Design", category: "Residential" },
+  { image: "WhatsApp Image 2026-01-28 at 10.15.51 AM (6).jpeg", title: "Interior Design", category: "Commercial" },
+  { image: "Noble gourmet f_Photo - 2 (1).jpg", title: "Noble UAE", category: "Commercial" }
 ]
 
-// Define explicit category mapping for specific files
-const getCategoryForImage = (image: string, index: number) => {
-  const lowerImage = image.toLowerCase()
-
-  const threeDImages = [
-    "whatsapp image 2026-01-28 at 10.13.44 am (2).jpeg",
-    "whatsapp image 2026-01-28 at 10.13.45 am (3).jpeg",
-    "whatsapp image 2026-01-28 at 10.13.46 am (5).jpeg",
-    "final noble gourmet_photo - 2.jpg",
-    "1n.jpg",
-    "view 3-high res-mod 2.jpg",
-    "whatsapp image 2021-01-20 at 9.00.58 am (1).jpeg",
-    "whatsapp image 2021-01-20 at 9.00.58 am.jpeg",
-    "view 1-option 2.jpg",
-    "view4-option 2.jpg"
-  ]
-  if (threeDImages.includes(lowerImage)) return '3D'
-
-  const outdoorImages = [
-    "img_5836.jpg",
-    "img_5844.jpg",
-    "whatsapp image 2026-01-28 at 10.13.43 am.jpeg",
-    "whatsapp image 2026-01-28 at 10.15.51 am (2).jpeg",
-    "whatsapp image 2026-01-28 at 10.15.51 am (3).jpeg",
-    "whatsapp image 2026-01-28 at 10.15.51 am (4).jpeg",
-    "whatsapp image 2026-01-28 at 10.16.40 am (1).jpeg",
-    "whatsapp image 2026-01-28 at 10.16.40 am (2).jpeg",
-  ]
-  if (outdoorImages.includes(lowerImage) || lowerImage.startsWith('jc_')) {
-    return 'Outdoor'
-  }
-
-  if (lowerImage.includes('noble')) {
-    return 'Commercial'
-  }
-
-  const defaultCategories = ["Residential", "Commercial", "Hospitality"]
-  return defaultCategories[index % 3]
-}
-
-// Gallery items with automatic category distribution
-const galleryItems = allImages.map((image, index) => {
-  const category = getCategoryForImage(image, index)
-  const year = index < 11 ? "2026" : index < 22 ? "2025" : "2024"
-
+const galleryItems = galleryData.map((item, index) => {
+  const year = index % 3 === 0 ? "2026" : index % 2 === 0 ? "2025" : "2024"
   return {
     id: index + 1,
-    title: `Project ${index + 1}`,
-    category: category,
-    year: year,
-    image: `/images/gallery/${image}`
+    title: item.title,
+    category: item.category,
+    image: `/images/gallery/${item.image}`,
+    year: year
   }
 })
 
 export default function GalleryPage() {
+  const [filterMode, setFilterMode] = useState<"Type" | "Project">("Type")
   const [activeCategory, setActiveCategory] = useState("All")
+  const [activeProject, setActiveProject] = useState("All")
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [hoveredId, setHoveredId] = useState<number | null>(null)
 
-  const filteredItems = activeCategory === "All"
-    ? galleryItems
-    : galleryItems.filter(item => item.category === activeCategory)
+  const distinctProjects = ["All", ...Array.from(new Set(galleryItems.map(item => item.title)))]
+
+  const filteredItems = galleryItems.filter(item => {
+    if (filterMode === "Type") {
+      return activeCategory === "All" || item.category === activeCategory
+    } else {
+      return activeProject === "All" || item.title === activeProject
+    }
+  })
 
   const handlePrev = () => {
     if (selectedIndex !== null) {
@@ -170,21 +167,62 @@ export default function GalleryPage() {
       </section>
 
       {/* Filter */}
-      <section className="px-6 lg:px-8 pb-8 sticky top-20 z-40">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap gap-2 p-2 bg-card/80 backdrop-blur-xl rounded-full w-fit">
-            {categories.map((category) => (
+      <section className="px-6 lg:px-8 pb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Filter Mode Toggle */}
+          <div className="flex justify-center mb-10">
+            <div className="inline-flex bg-muted rounded-full p-1 relative">
               <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === category
-                  ? "bg-foreground text-background"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                onClick={() => setFilterMode("Type")}
+                className={`relative z-10 px-8 py-2.5 rounded-full text-sm font-medium transition-colors duration-300 ${filterMode === "Type" ? "text-background" : "text-muted-foreground hover:text-foreground"
                   }`}
               >
-                {category}
+                Filter by Type
               </button>
-            ))}
+              <button
+                onClick={() => setFilterMode("Project")}
+                className={`relative z-10 px-8 py-2.5 rounded-full text-sm font-medium transition-colors duration-300 ${filterMode === "Project" ? "text-background" : "text-muted-foreground hover:text-foreground"
+                  }`}
+              >
+                Filter by Project
+              </button>
+              {/* Animated indicator */}
+              <div
+                className={`absolute inset-y-1 w-[calc(50%-4px)] bg-foreground rounded-full transition-transform duration-300 ease-out`}
+                style={{ transform: filterMode === "Type" ? 'translateX(4px)' : 'translateX(calc(100% + 4px))' }}
+              />
+            </div>
+          </div>
+
+          {/* Filter Options */}
+          <div className="flex flex-wrap justify-center gap-3 mb-16">
+            {filterMode === "Type" ? (
+              categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === category
+                    ? "bg-primary text-primary-foreground shadow-lg scale-105"
+                    : "bg-background border border-border text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                    }`}
+                >
+                  {category}
+                </button>
+              ))
+            ) : (
+              distinctProjects.map((project) => (
+                <button
+                  key={project}
+                  onClick={() => setActiveProject(project)}
+                  className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeProject === project
+                    ? "bg-primary text-primary-foreground shadow-lg scale-105"
+                    : "bg-background border border-border text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                    }`}
+                >
+                  {project}
+                </button>
+              ))
+            )}
           </div>
         </div>
       </section>
