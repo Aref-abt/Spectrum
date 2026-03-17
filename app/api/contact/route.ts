@@ -14,7 +14,10 @@ export async function POST(request: Request) {
     }
 
     // Check if Resend API key is configured
-    if (!process.env.RESEND_API_KEY) {
+    const hasApiKey = !!process.env.RESEND_API_KEY;
+    console.log(`[Contact API] API Key configured: ${hasApiKey}`);
+
+    if (!hasApiKey) {
       console.warn('RESEND_API_KEY not configured. Email will not be sent.');
       
       // Log the submission to console for testing
