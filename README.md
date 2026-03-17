@@ -1,6 +1,6 @@
 # Spectrum Interior Design
 
-A modern, responsive interior design portfolio website for Spectrum Interior Design, located in Zahle, Lebanon. Built with Next.js and featuring a beautiful gallery, contact form with email integration, and smooth animations.
+A modern, responsive interior design portfolio website for Spectrum Interior Design, offering services throughout Lebanon. Built with Next.js and featuring a beautiful gallery, contact form with email integration, and smooth animations.
 
 ## Features
 
@@ -122,7 +122,7 @@ npm start
 ## Contact
 
 **Spectrum Interior Design**
-- Location: Zahle, Lebanon
+- Location: Lebanon
 - Email: contact@manalsroujy.com
 - Website: [Spectrum Interior Design](https://github.com/Aref-abt/Spectrum)
 

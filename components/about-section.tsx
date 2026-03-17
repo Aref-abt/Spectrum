@@ -48,7 +48,7 @@ export function AboutSection() {
             {/* Floating card */}
             <div className="absolute -bottom-6 -right-6 lg:right-auto lg:-left-6 p-6 bg-card rounded-2xl shadow-xl max-w-xs">
               <p className="text-sm text-muted-foreground mb-2">Based in</p>
-              <p className="text-xl font-serif font-medium">Zahle, Lebanon</p>
+              <p className="text-xl font-serif font-medium">Lebanon</p>
             </div>
           </div>
 

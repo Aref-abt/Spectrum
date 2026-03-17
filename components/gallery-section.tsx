@@ -9,8 +9,8 @@ const featuredProjects = [
   {
     title: "Noble UAE",
     category: "Commercial",
-    images: ["1n.jpg", "2n.jpg", "final Noble Gourmet_Photo - 2.jpg"],
-    coverImage: "/images/gallery/1n.jpg",
+    images: ["final Noble Gourmet_1 - Photo.jpg", "1n.jpg", "2n.jpg", "final Noble Gourmet_Photo - 2.jpg"],
+    coverImage: "/images/gallery/final Noble Gourmet_1 - Photo.jpg",
     year: "2024"
   },
   {

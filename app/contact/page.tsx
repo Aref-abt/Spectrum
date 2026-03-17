@@ -53,7 +53,7 @@ export default function ContactPage() {
   const contactInfo = [
     { icon: Mail, label: "Email", value: "contact@manalsroujy.com", href: "mailto:contact@manalsroujy.com" },
     { icon: Phone, label: "Phone", value: "+961 3 799 827", href: "tel:+9613799827" },
-    { icon: MapPin, label: "Location", value: "Zahle, Lebanon", href: null },
+    { icon: MapPin, label: "Location", value: "Lebanon", href: null },
   ]
 
   return (
