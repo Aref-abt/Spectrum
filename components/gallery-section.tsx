@@ -5,39 +5,39 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
 
-const projects = [
+const featuredProjects = [
   {
-    id: 1,
-    title: "Modern Residence",
-    category: "Residential",
-    year: "2024",
-    size: "large",
-  },
-  {
-    id: 2,
-    title: "Boutique Hotel",
-    category: "Hospitality",
-    year: "2024",
-    size: "small",
-  },
-  {
-    id: 3,
-    title: "Executive Office",
+    title: "Noble UAE",
     category: "Commercial",
-    year: "2023",
-    size: "small",
+    images: ["1n.jpg", "2n.jpg", "final Noble Gourmet_Photo - 2.jpg"],
+    coverImage: "/images/gallery/1n.jpg",
+    year: "2024"
   },
   {
-    id: 4,
-    title: "Penthouse Suite",
+    title: "Modern House",
     category: "Residential",
-    year: "2023",
-    size: "large",
+    images: ["project-1.jpg", "project-2.jpg", "project-3.jpg", "project-4.jpg"],
+    coverImage: "/images/gallery/project-1.jpg",
+    year: "2024"
+  },
+  {
+    title: "Funky Shop",
+    category: "Commercial",
+    images: ["anthonydaoudphotography-32.jpg", "anthonydaoudphotography-34.jpg"],
+    coverImage: "/images/gallery/anthonydaoudphotography-32.jpg",
+    year: "2023"
+  },
+  {
+    title: "3D Design",
+    category: "Architecture",
+    images: ["WhatsApp Image 2026-01-28 at 10.15.51 AM.jpeg"],
+    coverImage: "/images/gallery/WhatsApp Image 2026-01-28 at 10.15.51 AM.jpeg",
+    year: "2024"
   },
 ]
 
 export function GallerySection() {
-  const [hoveredId, setHoveredId] = useState<number | null>(null)
+  const [hoveredId, setHoveredId] = useState<string | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -83,54 +83,51 @@ export function GallerySection() {
           </Link>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
-          {projects.map((project, index) => (
+        {/* Dynamic Project Grid */}
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+          {featuredProjects.map((project, index) => (
             <Link
-              key={project.id}
+              key={project.title}
               href="/gallery"
-              className={`group relative overflow-hidden rounded-3xl transition-all duration-700 ${project.size === "large" ? "aspect-[4/3]" : "aspect-square"
-                } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-              style={{ transitionDelay: `${index * 100 + 200}ms` }}
-              onMouseEnter={() => setHoveredId(project.id)}
+              className={`group relative text-left transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: `${index * 150}ms` }}
+              onMouseEnter={() => setHoveredId(project.title)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              {/* Project Image */}
-              <div className="absolute inset-0 bg-accent">
-                <Image
-                  src={`/images/gallery/project-${project.id}.jpg`}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
-
-              {/* Overlay */}
-              <div className={`absolute inset-0 bg-foreground/0 transition-all duration-500 ${hoveredId === project.id ? "bg-foreground/60" : ""
-                }`} />
-
-              {/* Content */}
-              <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-between">
-                {/* Top */}
-                <div className={`flex items-start justify-between transition-all duration-300 ${hoveredId === project.id ? "opacity-100" : "opacity-0"
-                  }`}>
-                  <span className="px-4 py-1.5 bg-background/90 backdrop-blur-sm rounded-full text-xs font-medium">
-                    {project.category}
-                  </span>
-                  <div className="w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm flex items-center justify-center">
-                    <ArrowUpRight className="w-4 h-4" />
+              {/* Stacked Aesthetic Container */}
+              <div className="relative aspect-[4/3] w-full mb-8">
+                {/* Background layers */}
+                <div className="absolute inset-0 bg-muted/50 rounded-3xl transition-transform duration-500 group-hover:rotate-[-3deg] group-hover:-translate-x-2 group-hover:-translate-y-2 opacity-30 translate-x-2 translate-y-2" />
+                <div className="absolute inset-0 bg-muted/80 rounded-3xl transition-transform duration-500 group-hover:rotate-[-1.5deg] group-hover:-translate-x-1 group-hover:-translate-y-1 opacity-60 translate-x-1 translate-y-1" />
+                
+                {/* Main image */}
+                <div className="absolute inset-0 rounded-3xl overflow-hidden shadow-xl bg-muted border border-border/50">
+                  <Image
+                    src={project.coverImage}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                    <div className="flex items-center justify-between text-white">
+                      <span className="text-sm font-light">View Project Gallery</span>
+                      <ArrowUpRight className="w-5 h-5 translate-x-1" />
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Bottom */}
-                <div className={`transition-all duration-500 ${hoveredId === project.id ? "translate-y-0 opacity-100" : "translate-y-4 opacity-70"
-                  }`}>
-                  <p className="text-xs text-background/70 mb-1">{project.year}</p>
-                  <h3 className="text-xl lg:text-2xl font-serif font-medium text-background">
-                    {project.title}
-                  </h3>
+              {/* Info */}
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-[10px] sm:text-xs text-muted-foreground font-medium uppercase tracking-[0.2em]">
+                  <span>{project.category}</span>
+                  <span className="h-1 w-1 rounded-full bg-foreground/20" />
+                  <span>{project.images.length} Photos</span>
                 </div>
+                <h3 className="text-2xl lg:text-3xl font-serif font-medium group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
               </div>
             </Link>
           ))}

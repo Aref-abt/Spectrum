@@ -113,31 +113,44 @@ const galleryItems = galleryData.map((item, index) => {
 })
 
 export default function GalleryPage() {
-  const [filterMode, setFilterMode] = useState<"Type" | "Project">("Type")
+  const [viewMode, setViewMode] = useState<"projects" | "gallery">("projects")
+  const [selectedProject, setSelectedProject] = useState<string | null>(null)
   const [activeCategory, setActiveCategory] = useState("All")
-  const [activeProject, setActiveProject] = useState("All")
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [hoveredId, setHoveredId] = useState<number | null>(null)
 
-  const distinctProjects = ["All", ...Array.from(new Set(galleryItems.map(item => item.title)))]
-
-  const filteredItems = galleryItems.filter(item => {
-    if (filterMode === "Type") {
-      return activeCategory === "All" || item.category === activeCategory
-    } else {
-      return activeProject === "All" || item.title === activeProject
+  // Group items by project
+  const projectsMap = galleryItems.reduce((acc, item) => {
+    if (!acc[item.title]) {
+      acc[item.title] = {
+        title: item.title,
+        category: item.category,
+        year: item.year,
+        images: [],
+        coverImage: item.image,
+      }
     }
-  })
+    acc[item.title].images.push(item)
+    return acc
+  }, {} as Record<string, { title: string; category: string; year: string; images: typeof galleryItems; coverImage: string }>)
+
+  const projects = Object.values(projectsMap)
+
+  const filteredProjects = activeCategory === "All"
+    ? projects
+    : projects.filter(p => p.category === activeCategory)
+
+  const projectImages = selectedProject ? projectsMap[selectedProject]?.images || [] : []
 
   const handlePrev = () => {
     if (selectedIndex !== null) {
-      setSelectedIndex(selectedIndex === 0 ? filteredItems.length - 1 : selectedIndex - 1)
+      setSelectedIndex(selectedIndex === 0 ? projectImages.length - 1 : selectedIndex - 1)
     }
   }
 
   const handleNext = () => {
     if (selectedIndex !== null) {
-      setSelectedIndex(selectedIndex === filteredItems.length - 1 ? 0 : selectedIndex + 1)
+      setSelectedIndex(selectedIndex === projectImages.length - 1 ? 0 : selectedIndex + 1)
     }
   }
 
@@ -151,50 +164,35 @@ export default function GalleryPage() {
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-12 bg-foreground/30" />
             <span className="text-sm font-medium text-muted-foreground tracking-wide">
-              Our Portfolio
+              {viewMode === "projects" ? "Our Portfolio" : "Project Details"}
             </span>
           </div>
+          {viewMode === "gallery" && selectedProject && (
+            <button 
+              onClick={() => setViewMode("projects")}
+              className="group flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mb-6"
+            >
+              <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+              Back to Projects
+            </button>
+          )}
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-medium tracking-tight mb-6">
-            Selected Work
+            {viewMode === "projects" ? "Selected Work" : selectedProject}
           </h1>
           <p className="max-w-xl text-lg text-muted-foreground leading-relaxed">
-            Explore our collection of thoughtfully designed spaces that blend elegance with functionality.
+            {viewMode === "projects" 
+              ? "Explore our collection of thoughtfully designed spaces that blend elegance with functionality."
+              : projectsMap[selectedProject!]?.category + " project completed in " + projectsMap[selectedProject!]?.year}
           </p>
         </div>
       </section>
 
-      {/* Filter */}
-      <section className="px-6 lg:px-8 pb-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Filter Mode Toggle */}
-          <div className="flex justify-center mb-10">
-            <div className="inline-flex bg-muted rounded-full p-1 relative">
-              <button
-                onClick={() => setFilterMode("Type")}
-                className={`relative z-10 px-8 py-2.5 rounded-full text-sm font-medium transition-colors duration-300 ${filterMode === "Type" ? "text-background" : "text-muted-foreground hover:text-foreground"
-                  }`}
-              >
-                Filter by Type
-              </button>
-              <button
-                onClick={() => setFilterMode("Project")}
-                className={`relative z-10 px-8 py-2.5 rounded-full text-sm font-medium transition-colors duration-300 ${filterMode === "Project" ? "text-background" : "text-muted-foreground hover:text-foreground"
-                  }`}
-              >
-                Filter by Project
-              </button>
-              {/* Animated indicator */}
-              <div
-                className={`absolute inset-y-1 w-[calc(50%-4px)] bg-foreground rounded-full transition-transform duration-300 ease-out`}
-                style={{ transform: filterMode === "Type" ? 'translateX(4px)' : 'translateX(calc(100% + 4px))' }}
-              />
-            </div>
-          </div>
-
-          {/* Filter Options */}
-          <div className="flex flex-wrap justify-center gap-3 mb-16">
-            {filterMode === "Type" ? (
-              categories.map((category) => (
+      {/* Filter - Only show in projects view */}
+      {viewMode === "projects" && (
+        <section className="px-6 lg:px-8 pb-8">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="flex flex-wrap justify-center gap-3 mb-16">
+              {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
@@ -205,83 +203,102 @@ export default function GalleryPage() {
                 >
                   {category}
                 </button>
-              ))
-            ) : (
-              distinctProjects.map((project) => (
-                <button
-                  key={project}
-                  onClick={() => setActiveProject(project)}
-                  className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeProject === project
-                    ? "bg-primary text-primary-foreground shadow-lg scale-105"
-                    : "bg-background border border-border text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-                    }`}
-                >
-                  {project}
-                </button>
-              ))
-            )}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Gallery Grid - Masonry Style */}
+      {/* Content Area */}
       <section className="px-6 lg:px-8 pb-24">
         <div className="max-w-7xl mx-auto">
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-4">
-            {filteredItems.map((item, index) => (
-              <button
-                key={item.id}
-                onClick={() => setSelectedIndex(index)}
-                onMouseEnter={() => setHoveredId(item.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                className="group relative w-full mb-4 break-inside-avoid rounded-2xl overflow-hidden cursor-pointer text-left"
-              >
-                {/* Dynamic aspect ratio for masonry effect */}
-                <div className={`relative ${item.id % 3 === 0 ? "aspect-[3/4]" : item.id % 2 === 0 ? "aspect-square" : "aspect-[4/3]"
-                  } bg-muted`}>
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-
-                {/* Overlay */}
-                <div className={`absolute inset-0 bg-foreground/0 transition-all duration-500 ${hoveredId === item.id ? "bg-foreground/60" : ""
-                  }`} />
-
-                {/* Hover content */}
-                <div className={`absolute inset-0 p-6 flex flex-col justify-between transition-opacity duration-300 ${hoveredId === item.id ? "opacity-100" : "opacity-0"
-                  }`}>
-                  <div className="flex justify-between items-start">
-                    <span className="px-3 py-1.5 bg-background/90 backdrop-blur-sm rounded-full text-xs font-medium">
-                      {item.category}
-                    </span>
-                    <div className="w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm flex items-center justify-center">
-                      <ArrowUpRight className="w-4 h-4" />
+          {viewMode === "projects" ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+              {filteredProjects.map((project) => (
+                <button
+                  key={project.title}
+                  onClick={() => {
+                    setSelectedProject(project.title)
+                    setViewMode("gallery")
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className="group relative text-left"
+                >
+                  {/* Stacked Aesthetic Container */}
+                  <div className="relative aspect-[4/5] w-full mb-6">
+                    {/* Background layers for stacking effect */}
+                    <div className="absolute inset-0 bg-muted rounded-2xl transition-transform duration-500 group-hover:rotate-[-4deg] group-hover:-translate-x-2 group-hover:-translate-y-2 opacity-40 translate-x-2 translate-y-2" />
+                    <div className="absolute inset-0 bg-muted rounded-2xl transition-transform duration-500 group-hover:rotate-[-2deg] group-hover:-translate-x-1 group-hover:-translate-y-1 opacity-70 translate-x-1 translate-y-1" />
+                    
+                    {/* Main cover image */}
+                    <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl bg-muted border border-border/50">
+                      <Image
+                        src={project.coverImage}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                        <div className="flex items-center justify-between text-white">
+                          <span className="text-sm font-light">View Project</span>
+                          <ArrowUpRight className="w-5 h-5" />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div>
-                    <p className="text-xs text-background/70 mb-1">{item.year}</p>
-                    <h3 className="text-lg font-medium text-background">{item.title}</h3>
-                  </div>
-                </div>
 
-                {/* Always visible info bar */}
-                <div className={`absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-foreground/80 to-transparent transition-opacity duration-300 ${hoveredId === item.id ? "opacity-0" : "opacity-100"
-                  }`}>
-                  <h3 className="text-sm font-medium text-background">{item.title}</h3>
-                </div>
-              </button>
-            ))}
-          </div>
+                  {/* Project Info */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground font-medium uppercase tracking-widest">
+                      <span>{project.category}</span>
+                      <span className="h-1 w-1 rounded-full bg-foreground/20" />
+                      <span>{project.images.length} Photos</span>
+                    </div>
+                    <h3 className="text-2xl font-serif font-medium group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                  </div>
+                </button>
+              ))}
+            </div>
+          ) : (
+            /* Masonry Grid for Individual Project Gallery */
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-4">
+              {projectImages.map((item, index) => (
+                <button
+                  key={item.id}
+                  onClick={() => setSelectedIndex(index)}
+                  onMouseEnter={() => setHoveredId(item.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                  className="group relative w-full mb-4 break-inside-avoid rounded-2xl overflow-hidden cursor-pointer text-left"
+                >
+                  <div className={`relative ${item.id % 3 === 0 ? "aspect-[3/4]" : item.id % 2 === 0 ? "aspect-square" : "aspect-[4/3]"
+                    } bg-muted`}>
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className={`absolute inset-0 bg-foreground/0 transition-all duration-500 ${hoveredId === item.id ? "bg-foreground/60" : ""
+                    }`} />
+                  <div className={`absolute inset-0 p-6 flex items-center justify-center transition-opacity duration-300 ${hoveredId === item.id ? "opacity-100" : "opacity-0"
+                    }`}>
+                    <div className="w-12 h-12 rounded-full bg-background/90 backdrop-blur-sm flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300">
+                      <ArrowUpRight className="w-5 h-5" />
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       {/* Lightbox */}
-      {selectedIndex !== null && (
+      {selectedIndex !== null && selectedProject && (
         <div
           className="fixed inset-0 z-[200] bg-foreground/95 backdrop-blur-xl flex items-center justify-center"
           onClick={() => setSelectedIndex(null)}
@@ -318,8 +335,8 @@ export default function GalleryPage() {
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src={filteredItems[selectedIndex].image}
-              alt={filteredItems[selectedIndex].title}
+              src={projectImages[selectedIndex].image}
+              alt={projectImages[selectedIndex].title}
               fill
               unoptimized
               className="object-contain"
@@ -327,9 +344,10 @@ export default function GalleryPage() {
           </div>
 
           {/* Counter */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-background/10 rounded-full">
-            <span className="text-sm text-background">
-              {selectedIndex + 1} / {filteredItems.length}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-background/10 rounded-full text-center">
+            <p className="text-sm font-medium text-background mb-1">{selectedProject}</p>
+            <span className="text-xs text-background/70">
+              {selectedIndex + 1} / {projectImages.length}
             </span>
           </div>
         </div>
