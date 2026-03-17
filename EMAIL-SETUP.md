@@ -24,6 +24,8 @@ Create a file named `.env.local` in your project root:
 
 ```bash
 RESEND_API_KEY=re_your_actual_api_key_here
+# Optional: Only if you verified a domain (see step 4)
+# RESEND_FROM_EMAIL=Contact Form <noreply@yourdomain.com>
 ```
 
 **Important:** Never commit `.env.local` to GitHub (it's already in .gitignore)
@@ -36,11 +38,10 @@ For production, you should verify your own domain:
 2. Click **Add Domain**
 3. Enter your domain (e.g., manalsroujy.com)
 4. Follow the DNS setup instructions
-5. Once verified, update the email route to use your domain:
-
-```typescript
-from: 'Contact Form <noreply@manalsroujy.com>',
-```
+5. Once verified, add the `RESEND_FROM_EMAIL` to your `.env.local` or Vercel settings:
+   ```bash
+   RESEND_FROM_EMAIL=Contact Form <noreply@manalsroujy.com>
+   ```
 
 ### 5. Test the Contact Form
 

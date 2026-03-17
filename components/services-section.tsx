@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { 
   Palette, 
   Box, 
@@ -73,7 +74,8 @@ export function ServicesSection() {
           {services.map((service, index) => {
             const Icon = service.icon
             return (
-              <div
+              <Link
+                href="/contact"
                 key={service.title}
                 className={`group relative p-8 rounded-3xl transition-all duration-500 cursor-pointer ${
                   hoveredIndex === index 
@@ -107,7 +109,7 @@ export function ServicesSection() {
                   Learn more
                   <ArrowRight className="w-4 h-4" />
                 </div>
-              </div>
+              </Link>
             )
           })}
         </div>

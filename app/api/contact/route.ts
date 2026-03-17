@@ -37,8 +37,14 @@ export async function POST(request: Request) {
     const { Resend } = await import('resend');
     const resend = new Resend(process.env.RESEND_API_KEY);
 
+    // IMPORTANT: If you haven't verified your domain in Resend, 
+    // you MUST use 'onboarding@resend.dev' as the from address.
+    // If you HAVE verified your domain (e.g., manalsroujy.com),
+    // you can use 'Contact Form <noreply@manalsroujy.com>'
+    const fromAddress = process.env.RESEND_FROM_EMAIL || 'Spectrum Contact Form <onboarding@resend.dev>';
+
     const { data, error } = await resend.emails.send({
-      from: 'Spectrum Contact Form <onboarding@resend.dev>',
+      from: fromAddress,
       to: ['contact@manalsroujy.com', 'aref.aboutrabi7@gmail.com'],
       replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
@@ -72,6 +78,7 @@ export async function POST(request: Request) {
                 padding: 15px;
                 background: white;
                 border-radius: 8px;
+                border: 1px solid #eee;
                 border-left: 4px solid #1a1a1a;
               }
               .label {
@@ -90,6 +97,7 @@ export async function POST(request: Request) {
                 background: white;
                 padding: 20px;
                 border-radius: 8px;
+                border: 1px solid #eee;
                 border-left: 4px solid #1a1a1a;
                 white-space: pre-wrap;
               }
@@ -105,43 +113,43 @@ export async function POST(request: Request) {
           <body>
             <div class="header">
               <h1 style="margin: 0; font-size: 28px; font-weight: 600;">New Contact Form Submission</h1>
-              <p style="margin: 10px 0 0 0; opacity: 0.9;">Spectrum Interior Design</p>
+              <p style="margin: 10px 0 0 0; opacity: 0.9;">Spectrum Interior Design Portfolio</p>
             </div>
             
             <div class="content">
               <div class="field">
-                <div class="label">Name</div>
+                <div class="label">Client Name</div>
                 <div class="value">${name}</div>
               </div>
               
               <div class="field">
-                <div class="label">Email</div>
+                <div class="label">Email Address</div>
                 <div class="value"><a href="mailto:${email}" style="color: #1a1a1a; text-decoration: none;">${email}</a></div>
               </div>
               
               ${phone ? `
               <div class="field">
-                <div class="label">Phone</div>
+                <div class="label">Phone Number</div>
                 <div class="value"><a href="tel:${phone}" style="color: #1a1a1a; text-decoration: none;">${phone}</a></div>
               </div>
               ` : ''}
               
               ${project ? `
               <div class="field">
-                <div class="label">Project Type</div>
-                <div class="value">${project}</div>
+                <div class="label">Requested Service</div>
+                <div class="value" style="text-transform: capitalize;">${project}</div>
               </div>
               ` : ''}
               
               <div class="field">
-                <div class="label">Message</div>
+                <div class="label">Message Details</div>
                 <div class="message-box">${message}</div>
               </div>
             </div>
             
             <div class="footer">
-              <p style="margin: 0;">This email was sent from the Spectrum Interior Design contact form.</p>
-              <p style="margin: 10px 0 0 0;">Reply directly to this email to contact ${name}.</p>
+              <p style="margin: 0;">This inquiry was sent from the Spectrum Interior Design contact form.</p>
+              <p style="margin: 10px 0 0 0;">You can reply directly to this email to contact <strong>${name}</strong>.</p>
             </div>
           </body>
         </html>
@@ -149,7 +157,13 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      console.error('Resend error:', error);
+      console.error('Resend API Error:', error);
+      // More descriptive error for the user
+      if (error.message.includes('onboarding@resend.dev')) {
+        return NextResponse.json({ 
+          error: 'Email configuration error. Please ensure you are sending to the verified owner email or verify your domain in Resend.' 
+        }, { status: 400 });
+      }
       return NextResponse.json({ error: error.message }, { status: 400 });
     }
 
