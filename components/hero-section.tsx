@@ -35,7 +35,7 @@ export function HeroSection() {
           }}
         >
           <img 
-            src="/images/gallery/JC_25460.jpg" 
+            src="/images/gallery/WhatsApp Image 2026-01-28 at 10.16.40 AM (1).jpeg" 
             alt="Spectrum Interior Design" 
             className="w-full h-full object-cover"
           />
