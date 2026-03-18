@@ -118,7 +118,6 @@ export default function ContactPage() {
                 <div className="flex flex-wrap gap-2">
                   <a href="https://www.instagram.com/spectrum.design9/" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-full border border-border text-sm font-medium hover:bg-muted transition-all duration-300">Instagram</a>
                   <a href="https://www.linkedin.com/in/manal-sroujy-1b7a01170?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-full border border-border text-sm font-medium hover:bg-muted transition-all duration-300">LinkedIn</a>
-                  <a href="#" className="px-5 py-2.5 rounded-full border border-border text-sm font-medium hover:bg-muted transition-all duration-300">Pinterest</a>
                 </div>
               </div>
             </div>
