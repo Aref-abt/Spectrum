@@ -483,7 +483,7 @@ export default function GalleryPage() {
 
           {/* Image container */}
           <div
-            className="relative max-w-5xl w-full mx-6 aspect-video rounded-3xl overflow-hidden bg-background/5"
+            className="relative max-w-6xl w-full h-[75vh] md:h-[85vh] mx-4 md:mx-6 rounded-2xl md:rounded-3xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <Image

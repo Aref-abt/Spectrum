@@ -73,7 +73,7 @@ export default function AboutPage() {
               Crafting spaces that tell your story
             </h1>
             <p className="max-w-xl text-lg text-muted-foreground leading-relaxed">
-              An interior design studio based in Lebanon, focused on creating elegant, functional, and timeless spaces.
+              An interior design studio based in Beirut and Zahle, Lebanon, focused on creating elegant, functional, and timeless spaces.
             </p>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-6 text-muted-foreground leading-relaxed">
                 <p className="text-lg">
-                  Spectrum is an interior design studio based in Lebanon, focused on creating elegant, functional, and timeless spaces.
+                  Spectrum is an interior design studio based in Beirut and Zahle, Lebanon, focused on creating elegant, functional, and timeless spaces.
                 </p>
                 <p>
                   We believe good design is a balance between aesthetics and practicality, resulting in interiors that reflect our clients{"'"} lifestyles, needs, and vision.

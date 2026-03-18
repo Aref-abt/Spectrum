@@ -48,7 +48,7 @@ export function AboutSection() {
             {/* Floating card */}
             <div className="absolute -bottom-6 -right-6 lg:right-auto lg:-left-6 p-6 bg-card rounded-2xl shadow-xl max-w-xs">
               <p className="text-sm text-muted-foreground mb-2">Based in</p>
-              <p className="text-xl font-serif font-medium">Lebanon</p>
+              <p className="text-xl font-serif font-medium">Beirut & Zahle, Lebanon</p>
             </div>
           </div>
 
@@ -67,7 +67,7 @@ export function AboutSection() {
 
             <div className="space-y-6 mb-10">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Spectrum is an interior design studio based in Lebanon, focused on creating elegant, functional, and timeless spaces.
+                Spectrum is an interior design studio based in Beirut and Zahle, Lebanon, focused on creating elegant, functional, and timeless spaces.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 We believe good design is a balance between aesthetics and practicality, resulting in interiors that reflect our clients{"'"} lifestyles, needs, and vision. From concept development and 3D visualization through to execution, we design spaces that feel refined, comfortable, and personal.

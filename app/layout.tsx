@@ -18,7 +18,7 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: 'Spectrum | Interior Design Studio',
-  description: 'Spectrum is an interior design studio based in Lebanon, focused on creating elegant, functional, and timeless spaces.',
+  description: 'Spectrum is an interior design studio based in Beirut and Zahle, Lebanon, focused on creating elegant, functional, and timeless spaces.',
   generator: 'v0.app',
   icons: {
     icon: [

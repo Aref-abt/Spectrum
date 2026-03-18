@@ -53,7 +53,7 @@ export default function ContactPage() {
   const contactInfo = [
     { icon: Mail, label: "Email", value: "contact@manalsroujy.com", href: "mailto:contact@manalsroujy.com" },
     { icon: Phone, label: "Phone", value: "+961 3 799 827", href: "tel:+9613799827" },
-    { icon: MapPin, label: "Location", value: "Lebanon", href: null },
+    { icon: MapPin, label: "Location", value: "Beirut & Zahle, Lebanon", href: null },
   ]
 
   return (
@@ -113,19 +113,12 @@ export default function ContactPage() {
                 })}
               </div>
 
-              {/* Social links */}
               <div>
                 <p className="text-sm text-muted-foreground mb-4">Follow Us</p>
                 <div className="flex flex-wrap gap-2">
-                  {["Instagram", "LinkedIn", "Pinterest"].map((social) => (
-                    <a 
-                      key={social}
-                      href="#"
-                      className="px-5 py-2.5 rounded-full border border-border text-sm font-medium hover:bg-muted transition-all duration-300"
-                    >
-                      {social}
-                    </a>
-                  ))}
+                  <a href="https://www.instagram.com/spectrum.design9/" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-full border border-border text-sm font-medium hover:bg-muted transition-all duration-300">Instagram</a>
+                  <a href="https://www.linkedin.com/in/manal-sroujy-1b7a01170?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-full border border-border text-sm font-medium hover:bg-muted transition-all duration-300">LinkedIn</a>
+                  <a href="#" className="px-5 py-2.5 rounded-full border border-border text-sm font-medium hover:bg-muted transition-all duration-300">Pinterest</a>
                 </div>
               </div>
             </div>

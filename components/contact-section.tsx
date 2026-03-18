@@ -28,7 +28,7 @@ export function ContactSection() {
   const contactInfo = [
     { icon: Mail, label: "Email", value: "contact@manalsroujy.com", href: "mailto:contact@manalsroujy.com" },
     { icon: Phone, label: "Phone", value: "+961 3 799 827", href: "tel:+9613799827" },
-    { icon: MapPin, label: "Location", value: "Lebanon", href: null },
+    { icon: MapPin, label: "Location", value: "Beirut & Zahle, Lebanon", href: null },
   ]
 
   return (
