@@ -28,10 +28,10 @@ const featuredProjects = [
     year: "2023"
   },
   {
-    title: "3D Design",
-    category: "Architecture",
-    images: ["WhatsApp Image 2026-01-28 at 10.15.51 AM.jpeg"],
-    coverImage: "/images/gallery/WhatsApp Image 2026-01-28 at 10.15.51 AM.jpeg",
+    title: "Pool",
+    category: "Outdoor",
+    images: ["view 3-high res-mod 2.jpg"],
+    coverImage: "/images/gallery/view 3-high res-mod 2.jpg",
     year: "2024"
   },
 ]
